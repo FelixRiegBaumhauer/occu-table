@@ -15,7 +15,8 @@
       {%- for key in dict %}
       <tr>
  	<td>{{key}}</td>
-	<td>{{dict[key]}}</td>
+	<td>{{(dict[key])[0]}}%</td>
+	<td><a href="{{(dict[key])[1]}}">{{key}}</a> </td>
       </tr>
     {%- endfor %}
   </body>

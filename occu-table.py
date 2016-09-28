@@ -36,23 +36,44 @@ def builder(inFile):
     for line in refinedInput:
         job = ""
         num = ""
+        url = ""
+        blurb = ""#where the num and url are found in the line, a holder of srts
+        info = [] #holds the num and the url
         if(line[0] == '"'):
             line = line[1:]
             run = len(line)-1
             while (run>=0):
                 if(line[run] == '"'):
                     job = line[:run]
-                    num = line[run+2:]
+                    
+                    blurb = line[run+2:]
+                    loc = blurb.index(",")#the loc of the  1st comma
+                    num = blurb[:loc]
+                    url = blurb[loc+1:]
+                    info.append(num)
+                    info.append(url)
+                    
+                    #num = line[run+2:]
                     run = 0
-                    dict[job]=num
+                    dict[job] = info
+                    #dict[job]=num
                     #dict[num] = job
                     #print job+"----"+num
                 run-=1
         else:
             pos = line.index(",")
             job = line[:pos]
-            num = line[pos+1:]
-            dict[job]=num
+
+            blurb = line[pos+1:]
+            loc = blurb.index(",")
+            num = blurb[:loc]
+            url = blurb[loc+1:]
+            info.append(num)
+            info.append(url)
+            
+            #num = line[pos+1:]
+            dict[job] = info
+            #dict[job]=num
             #dict[num] = job
             #print(job+"---"+num)
     return dict
@@ -63,11 +84,12 @@ dict = builder("occupations.csv")
 
 #Gets a random job, by means of generating a random int, then using the values stored in the
 #dict to find an appropriate value
+
 def getRandomOccupation(dict):
     randInt = random.randint(0, 997)
     posHold = 0
     for key in dict:
-        posHold += (10 * float(dict[key]))
+        posHold += (10 * float((dict[key])[0]))
         if(randInt < posHold):
             return key
     #If all goes wrong
