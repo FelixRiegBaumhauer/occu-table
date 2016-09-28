@@ -80,7 +80,7 @@ def builder(inFile):
             
 #print dict
 
-dict = builder("occupations.csv")
+#dict = builder("data/occupations.csv")
 
 #Gets a random job, by means of generating a random int, then using the values stored in the
 #dict to find an appropriate value
@@ -126,14 +126,18 @@ def quickTest():
 #--------------------------------------#
 
 
+dict = builder("data/occupations.csv")
+
 @app.route("/occupations")
 def occupater():
     return render_template("occu-temp.html", title="A Collection of Occupations", dict = dict, ans = getRandomOccupation(dict))
+    #return render_template("occu-temp.html", title="A Collection of Occupations", dict = builder("data/occupations.csv"), ans = getRandomOccupation(builder("data/occupations.csv")))
+
 #should return a render template
 
     
 if __name__=="__main__":
     app.run()
-    app.debug = True #this is comment
+    app.debug = True #auto restarts server when u save
     
 
