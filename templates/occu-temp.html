@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+
+<html>
+  
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <br>
+
+    Your job: {{ans}}
+    <br>
+    
+    <table border="1">
+      {%- for key in dict %}
+      <tr>
+ 	<td>{{key}}</td>
+	<td>{{dict[key]}}</td>
+      </tr>
+    {%- endfor %}
+  </body>
+  
+</html>
