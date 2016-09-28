@@ -7,7 +7,9 @@ import random
 
 @app.route("/") #recyclyed, 
 def helloworld():
-    return "To access, type occupations in the top thing"
+    return 'Welcome to the landing platform <br>Here is a <a href="/occupations">link</a> to the occupations page'
+
+#"To access, type occupations in the top thing"
 
 #breka things up and open things, we break along /n
 
